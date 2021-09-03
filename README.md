@@ -1,37 +1,40 @@
-## Welcome to GitHub Pages
-
-You can use the [editor on GitHub](https://github.com/Fythem/fythem.github.io/edit/main/README.md) to maintain and preview the content for your website in Markdown files.
-
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
-
-### Markdown
-
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
-
-```markdown
-Syntax highlighted code block
-
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/Fythem/fythem.github.io/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+<html>
+	<head>
+		<meta charset="UTF-8">
+	</head>
+	<script>
+		alert(document.cookie);
+		var text="";
+		for(var obj in window){
+			if(true){
+				text+=obj+"<br />";
+				for(var o in window[obj]){
+					text+="----"+o+"<br />";
+				}
+			}
+		}
+		document.write(text);
+		//alert(window.BLightApp.dopay);
+		/*var p=window.BLightApp.dopay("window.successCallback","window.errorCallback","cashdesk_code=33&qrcode_stat=1&currency=1&extra=&fee_amount=3&goods_desc=%C1%AA%CD%A8%C9%CF%BA%A310.00%D4%AA18516782327%BF%EC%B3%E4&goods_url=&input_charset=1&order_create_time=20170825183917&order_no=00000000100935325246&page_url=https%3A%2F%2Fwww.baifubao.com%2Fpdc%2F0%2Fview%2F0&pay_type=0&phone_num=18516782327&profit_solution=1%5E1000055192%5E1%5E3%5Eprofit_solution_pdc_gdc&return_url=https%3A%2F%2Fwww.baifubao.com%2Fpdc%2F0%2Fbfb_notify%2F0%2F&service_code=2&service_type=2&sign_method=1&sp_no=2600010005&sp_rcs=1%7CiwOWp9BnmAZ9lzppsobFoxo2SaSRy4q%2BeqNzggFYsKA%3D&total_amount=1000&transport_amount=&unit_amount=&unit_count=&sign=da9fb613214907b6e9cd466dea0f9c23",false);
+		
+		aler(p);
+		alert(getContents(p.getInputStream()));
+		
+		
+		
+		  function getContents(inputStream)  
+      {  
+        var contents = ""+i;  
+        var b = inputStream.read();  
+        var i = 1;  
+        while(b != -1) {  
+            var bString = String.fromCharCode(b);  
+            contents += bString;  
+            contents += "\n"  
+            b = inputStream.read();  
+        }  
+        i=i+1;  
+        return contents;  
+       }  */
+	</script>
+</html>
