@@ -36,7 +36,7 @@
 	document.write("<br />----getAccount: " + window.lives.getAccount("a"));
 	document.write("<br />----getTokenVerifyUrl: " + window.lives.getTokenVerifyUrl());
 	document.write("<br />----getAppExists(com.huawei.hwid): " + window.lives.getAppExists("com.huawei.hwid"));
-	document.write("<br />----getAccessToken: " + window.lives.getAccessToken("haha", true));
+	window.lives.getAccessToken("haha", true);
 	document.write("<br />----cookie: " + document.cookie);
 	
 	document.write("<br />")
