@@ -31,18 +31,23 @@
 			qjd_div.innerHTML += '----'+typeof(window[qjd_attr[i]][j])+': '+j+'<br>'
 	}
 	document.write("00<br />");
-	document.write("window.lives:");
-	document.write("<br />----getJsEnv: " + window.lives.getJsEnv());
-	document.write("<br />----getAccount: " + window.lives.getAccount("a"));
-	document.write("<br />----getTokenVerifyUrl: " + window.lives.getTokenVerifyUrl());
-	document.write("<br />----getAppExists(com.huawei.hwid): " + window.lives.getAppExists("com.huawei.hwid"));
-	window.lives.getAccessToken("haha", true);
-	document.write("<br />----cookie: " + document.cookie);
-	
-	document.write("<br />")
-	document.write("window.hwlives:");
-	document.write("<br />----isSkytoneAvailable: " + window.hwlives.isSkytoneAvailable());
-	document.write("<br />end")
+	alert("window._dsbridge.call()!!!!")
+	window._dsbridge.call("android.util.Log&i", "{'_dscbstub':'','data':'haha'}");
+
+
+
+	//document.write("window.lives:");
+	//document.write("<br />----getJsEnv: " + window.lives.getJsEnv());
+	//document.write("<br />----getAccount: " + window.lives.getAccount("a"));
+	//document.write("<br />----getTokenVerifyUrl: " + window.lives.getTokenVerifyUrl());
+	//document.write("<br />----getAppExists(com.huawei.hwid): " + window.lives.getAppExists("com.huawei.hwid"));
+	//window.lives.getAccessToken("haha", true);
+	//document.write("<br />----cookie: " + document.cookie);
+
+	//document.write("<br />")
+	//document.write("window.hwlives:");
+	//document.write("<br />----isSkytoneAvailable: " + window.hwlives.isSkytoneAvailable());
+	//document.write("<br />end")
 	//document.write(window.tbs_jsbridge.nativeExec().toString());
 	//alert(window.tbs_bridge.nativeExec.toString()); //对于自定义的js方法可打印出方法实现，对于浏览器内置方法则不会打印方法实现，对于自定义的js对象中的方法不知是否会打印实现
 
