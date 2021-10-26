@@ -31,9 +31,8 @@
 			qjd_div.innerHTML += '----'+typeof(window[qjd_attr[i]][j])+': '+j+'<br>'
 	}
 	document.write("00<br />");
-	alert("window._dsbridge.call()!!!!")
-	window._dsbridge.call("com.tuya.smart.jsbridge.base.webview.WebViewActivity.onDestroy", "{'data':null}");
-
+	alert("window._dsbridge.call()!!!!");
+	alert(window._dsbridge.call("com.facebook.common.util.UriUtil.parseUriOrNull", "{'data':"https://www.baidu.com"}"));
 
 
 	//document.write("window.lives:");
