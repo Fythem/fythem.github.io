@@ -32,7 +32,8 @@
 	}
 	document.write("00<br />");
 	alert("window._dsbridge.call()!!!!");
-	alert(window._dsbridge.call("com.tuya.smart.jsbridge.dsbridge.DWebView$InnerJavascriptInterface.a", "{'data':'call DWebView$InnerJavascriptInterface.a'}"));
+	alert(window._dsbridge.call("com.tuya.smart.jsbridge.dsbridge.DWebView.loadUrl", "{'data':'https:\/\/www.baidu.com'}"));
+	alert("finished");
 
 	//document.write(window.tbs_jsbridge.nativeExec().toString());
 	//alert(window.tbs_bridge.nativeExec.toString()); //对于自定义的js方法可打印出方法实现，对于浏览器内置方法则不会打印方法实现，对于自定义的js对象中的方法不知是否会打印实现
