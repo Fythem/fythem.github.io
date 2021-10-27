@@ -31,6 +31,7 @@
 			qjd_div.innerHTML += '----'+typeof(window[qjd_attr[i]][j])+': '+j+'<br>'
 	}
 	document.write("00<br />");
+	alert(window.biliInject.postMessage("{'method':'global.getAllSupport','data':'{'callbackId':'1'}'}"));
 	alert("finished");
 
 	//document.write(window.tbs_jsbridge.nativeExec().toString());
