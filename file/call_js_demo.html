@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<header>
+    <meta charset="UTF-8">
+</header>
+<script>
+    function show() {
+        let namespace = document.getElementById('namespace').value;
+        let fun = document.getElementById('fun').value;
+        let args = document.getElementById('args').value;
+        var command = "window."+namespace+"."+fun+"("+args+")"
+        let value = new Function(command)
+        alert("command: "+command+"\n"+value)
+    }
+</script>
+<body>
+<form>
+    <label for="namespace">namespace</label>
+    <input type="text" id="namespace" name="fun"><br><br>
+
+    <label for="fun">function</label>
+    <input type="text" id="fun" name="fun"><br><br>
+
+    <label for="args">input2</label>
+    <input type="text" id="args" name="args"><br><br>
+
+    <input type="submit" value="Submit" onclick="show()">
+</form>
+</body>
+</html>
