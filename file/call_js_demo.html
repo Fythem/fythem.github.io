@@ -9,10 +9,10 @@
         let namespace = document.getElementById('namespace').value;
         let fun = document.getElementById('fun').value;
         let args = document.getElementById('args').value;
-        var command = "window."+namespace+"."+fun+"("+args+")"
-        alert(command)
-        let value = new Function(command)
-        alert(value)
+        var command = "window."+namespace+"."+fun+"("+args+")";
+        alert(command);
+        let value = new Function(command)();
+        alert(value);
     }
 </script>
 <body>
