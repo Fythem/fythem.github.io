@@ -10,8 +10,9 @@
         let fun = document.getElementById('fun').value;
         let args = document.getElementById('args').value;
         var command = "window."+namespace+"."+fun+"("+args+")"
+        alert(command)
         let value = new Function(command)
-        alert("command: "+command+"\n"+value)
+        alert(value)
     }
 </script>
 <body>
