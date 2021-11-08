@@ -33,6 +33,12 @@
 	document.write("00<br />");
 	alert(window.biliInject.postMessage("{'method':'global.getAllSupport','data':'{'callbackId':'1'}'}"));
 	alert("finished");
+	
+	window.hwTransitOpenServiceJSApi.queryDeviceInfo();
+	var callbackResult(a, b){
+		var log_a = "-->" + a + "\n---->" + b;
+		alert("callbackResult: \n" + log_a);
+	}
 
 	//document.write(window.tbs_jsbridge.nativeExec().toString());
 	//alert(window.tbs_bridge.nativeExec.toString()); //对于自定义的js方法可打印出方法实现，对于浏览器内置方法则不会打印方法实现，对于自定义的js对象中的方法不知是否会打印实现
