@@ -23,9 +23,9 @@
 	  alert("Error code " + event.code + ". " + event.message);
 	}
 	function run_android(){
-	  window.hwTransitOpenServiceJSApi.queryDeviceInfo();
+	  window.hwTransitPayServiceJSApi.startPay("fkx15758wmuwhigrpcg65f1", "https://www.baidu.com");
 	}
-	
+	//https://qr.alipay.com/fkx15758wmuwhigrpcg65f1
 	function callbackResult(a, b){
 	  var log_a = "-->" + a + "\n---->" + b;
 	  alert("callbackResult: \n" + log_a);
