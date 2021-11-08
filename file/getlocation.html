@@ -22,10 +22,18 @@
 	{
 	  alert("Error code " + event.code + ". " + event.message);
 	}
+	function run_android(){
+	  window.hwTransitOpenServiceJSApi.queryDeviceInfo();
+	}
+	
+	function callbackResult(a, b){
+	  var log_a = "-->" + a + "\n---->" + b;
+	  alert("callbackResult: \n" + log_a);
+	}
 
 
 	</script>
 
 	<input type="text" name="location" id="location" style="width:278px;">
-	<button onclick="getLocationConstant()" >Click</button>
+	<button onclick="run_android()" >Click</button>
 </html>
