@@ -31,9 +31,24 @@
 			qjd_div.innerHTML += '----'+typeof(window[qjd_attr[i]][j])+': '+j+'<br>'
 	}
 	document.write("00<br />");
-	alert(window.biliInject.postMessage("{'method':'global.getAllSupport','data':'{'callbackId':'1'}'}"));
+	//alert(window.biliInject.postMessage("{'method':'global.getAllSupport','data':'{'callbackId':'1'}'}"));
 	alert("finished");
 	
+	
+	
+	var _setUserInfo = function(p1){
+	    alert(p1);
+	}
+	var _callbackFunction = function(p1,p2){
+    	    alert(p2);
+	}
+	var mdSmartios = {};
+	    mdSmartios.bridge = {
+    	    setUserInfo:_setUserInfo,
+    	    callbackFunction:_callbackFunction
+	};
+	document.location.href='iosbridge://getUserInfo?{}';
+	document.location.href='iosbridge://commandInterface?{"operation":"burialPoint","params":{"pluginType":2,"uploadType":0,"sub_action":"page_view","action_type":"recommend_recommendDetailPage_load","object":"page","page_name":"recommendDetailPage_h5","action_result":"code_0||msg_"},"cammandId":3578}';
 
 	//document.write(window.tbs_jsbridge.nativeExec().toString());
 	//alert(window.tbs_bridge.nativeExec.toString()); //对于自定义的js方法可打印出方法实现，对于浏览器内置方法则不会打印方法实现，对于自定义的js对象中的方法不知是否会打印实现
