@@ -34,11 +34,8 @@
 	//alert(window.biliInject.postMessage("{'method':'global.getAllSupport','data':'{'callbackId':'1'}'}"));
 	alert("finished!!!!");
 	cookieStore.set('haha','123456');
-	var coo = cookieStore.getAll();
-	var strrr = "";
-	for (aa in coo){
-		alert(aa);
-	}
+	alert(cookieStore.getAll("haha"));
+
 
 	
 	
