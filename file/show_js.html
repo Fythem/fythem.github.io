@@ -33,8 +33,8 @@
 	document.write("00<br />");
 	//alert(window.biliInject.postMessage("{'method':'global.getAllSupport','data':'{'callbackId':'1'}'}"));
 	alert("loadjs_finished");
-	document.write("document.cookie:" + document.cookie);
-	document.write("cookieStore:" + window.cookieStore.getAll());
+	document.write("document.cookie:" + document.cookie + "<br />");
+	document.write("cookieStore:" + json.stringify(window.cookieStore.getAll()));
 	//alert("isApkInstalled(com.huawei.hwid): " + window.DownLoadApkManager.isApkInstalled("com.huawei.hwid"));
 
 	//alert("showDownloadView(): " + window.DownLoadApkManager.showDownloadView("[{}]"));
