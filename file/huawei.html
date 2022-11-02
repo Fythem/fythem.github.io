@@ -3,7 +3,18 @@
 <body style="word-wrap:break-word;">
 <div id="res"></div>
 <script>
-  window.consumerapp.shareLocal("https://www.baidu.com");
+  function show_callback(jsonString){
+     alert(jsonString);
+  }
+  
+//   window.consumerapp.shareLocal("https://www.baidu.com");
+  var aa = {};
+  aa.functionName = "js_fun_execute";
+  aa.functionCallBackName = "show_callback";
+  
+  var pp = {}
+  aa.params = pp
+  window.consumerapp.evaluate(aa);
 </script>
 </body>
 </html>
