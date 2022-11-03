@@ -9,11 +9,13 @@
   
 //   window.consumerapp.shareLocal("https://www.baidu.com");
   var aa = {};
-  aa.functionName = "js_fun_execute";
+  aa.functionName = "js_fun_openLocation";
   aa.functionCallBackName = "show_callback";
   
   var pp = {};
   pp.execute = "native://app/pwaModule/getAccessToken";
+  pp.callback = "show_callback";
+  pp.showOpenDialog = "true";
   aa.params = pp;
 //   window.consumerapp.evaluate(JSON.stringify(aa));
   window.partnerapp.evaluate(JSON.stringify(aa));
