@@ -3,8 +3,8 @@
 <body style="word-wrap:break-word;">
 <div id="res"></div>
 <script>
-  function show_callback(jsonString){
-     alert(jsonString);
+  function show_callback(json){
+     alert(JSON.stringify(json));
   }
   
 //   window.consumerapp.shareLocal("https://www.baidu.com");
@@ -13,9 +13,9 @@
   aa.functionCallBackName = "show_callback";
   
   var pp = {};
-  pp.execute = "native://app/pwaModule/getAccessToken";
+  //pp.execute = "native://app/pwaModule/getAccessToken";
   pp.callback = "show_callback";
-  pp.showOpenDialog = "true";
+  pp.showOpenDialog = "false";
   aa.params = pp;
 //   window.consumerapp.evaluate(JSON.stringify(aa));
   window.partnerapp.evaluate(JSON.stringify(aa));
