@@ -1,0 +1,15 @@
+mixed-port: 7890
+allow-lan: false
+mode: global
+log-level: info
+external-controller: 127.0.0.1:9090
+proxies:
+  - name: "burp"
+    type: http
+    server: 192.168.70.72
+    port: 8080 
+proxy-groups:
+  - name: Proxy
+    type: select
+    proxies:
+      - burp
