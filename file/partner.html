@@ -1,0 +1,19 @@
+<html>
+<head></head>
+<body style="word-wrap:break-word;">
+<div id="res"></div>
+<script>
+  function show_callback(json){
+     document.write(json.resultType+": ("+json.lat+", "+json.lng+")")
+  }
+  var aa = {};
+  aa.functionName = "js_fun_openLocation";
+  aa.functionCallBackName = "show_callback";
+  var pp = {};
+  pp.callback = "show_callback";
+  pp.showOpenDialog = "false";
+  aa.params = pp;
+  window.partnerapp.evaluate(JSON.stringify(aa));
+</script>
+</body>
+</html>
