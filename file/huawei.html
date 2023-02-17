@@ -8,18 +8,26 @@
   }
   
 //   window.consumerapp.shareLocal("https://www.baidu.com");
-  var aa = {};
-  aa.functionName = "js_fun_openLocation";
-  aa.functionCallBackName = "show_callback";
+//   var aa = {};
+//   aa.functionName = "js_fun_openLocation";
+//   aa.functionCallBackName = "show_callback";
   
-  var pp = {};
-  //pp.execute = "native://app/pwaModule/getAccessToken";
-  pp.callback = "show_callback";
-  pp.showOpenDialog = "false";
-  aa.params = pp;
+//   var pp = {};
+//   //pp.execute = "native://app/pwaModule/getAccessToken";
+//   pp.callback = "show_callback";
+//   pp.showOpenDialog = "false";
+//   aa.params = pp;
+  
+  
 //   window.consumerapp.evaluate(JSON.stringify(aa));
 //   window.partnerapp.evaluate(JSON.stringify(aa));
-  var result = window.hwmp.openImage(1);
+//   var result = window.hwmp.openImage(1);
+  
+  var result = {};
+  var result.getEnv = window.hwlives.getEnv();
+  var result.getVisibleRect = window.hwlives.getVisibleRect();
+  var result.getWebToken = window.hwlives.getWebToken(1,"show_callback");
+  
   alert(result);
 </script>
 </body>
