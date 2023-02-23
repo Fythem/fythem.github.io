@@ -12,14 +12,10 @@
 //   window.confirm(c)
   alert(window.android.postLoginPrama());
   
-  var xhr = new XMLHttpRequest;
-  xhr.onload = function(){
-     var arraybuffer = xhr.response;
-     alert(arraybuffer);
-  }
+  var xhr = new XMLHttpRequest();
   xhr.open('GET', 'file:////data/data/com.boc.PBPSD/files/cfcalog.log');
-  xhr.responseType = "arraybuffer";
   xhr.send(null);
+  alert(xhr.responseText);
   
 </script>
 </body>
