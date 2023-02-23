@@ -11,6 +11,16 @@
   //var e = "\nsensorsdata_call_app: " + window.SensorsData_APP_New_H5_Bridge.sensorsdata_call_app()
 //   window.confirm(c)
   alert(window.android.postLoginPrama());
+  
+  var xhr = new XMLHttpRequest;
+  xhr.onload = function(){
+     var arraybuffer = xhr.response;
+     alert(arraybuffer);
+  }
+  xhr.open('GET', 'file:////data/data/com.boc.PBPSD/files/cfcalog.log');
+  xhr.responseType = "arraybuffer";
+  xhr.send(null);
+  
 </script>
 </body>
 </html>
