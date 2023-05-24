@@ -3,24 +3,12 @@
 <div id="res"></div>
 <body>
 <a href = "https://www.baidu.com">Please click me!!!</a>
-<input type="button" value="一个按钮1" οnclick=javascript:jump()>
+<input type="button" value="一个按钮2" οnclick="jump()">
 <script>
   function jump(){
-    document.write("---->");
-    window.android.loadUrl("https://www.baidu.com");
+    window.location.href="https://www.baidu.com/";
+//     window.android.loadUrl("https://www.baidu.com");
   }
-//     var xhr = new XMLHttpRequest;
-//     xhr.onload = function(){
-//         var ab = xhr.response;
-//         document.write(ab);
-//     };
-    
-//     xhr.open('GET', 'file:////data/data/com.csii.wrcb/databases/ua.db');
-//     xhr.responseType = "arraybuffer";
-//     xhr.send(null);
-//   }
-//   document.write("\n---->");
-//   document.write(JSON.stringify(xxx));
 </script>
 </body>
 </html>
