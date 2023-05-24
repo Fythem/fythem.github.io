@@ -2,35 +2,14 @@
 <head></head>
 <div id="res"></div>
 <body>
-  <a href = "http://www.baidu.com">Please click me!!!</a>
+<a href = "https://www.baidu.com">Please click me!!!</a>
+<input type="button" value="一个按钮" οnclick=javascript:jump()>
 <script>
-
-//   window.confirm("aaa")
-  //var a = "sensorsdata_abtest_module: " + window.SensorsData_APP_New_H5_Bridge.sensorsdata_abtest_module()
-  //var b = "\nsensorsdata_get_app_visual_config: " + JSON.stringify(window.SensorsData_APP_New_H5_Bridge.sensorsdata_get_app_visual_config())
-//   var c = "\nsensorsdata_get_server_url: " + window.SensorsData_APP_New_H5_Bridge.sensorsdata_get_server_url()
-  
-  //var d = "\nsensorsdata_visualized_mode: " + window.SensorsData_App_Visual_Bridge.sensorsdata_visualized_mode()
-  //var e = "\nsensorsdata_call_app: " + window.SensorsData_APP_New_H5_Bridge.sensorsdata_call_app()
-//   window.confirm(c)
-//   alert("111");
-//   window.location.replace("file:///sdcard/Download/test.html");
-//   window.location.reload(true);
-//   window.location.href = "file:///sdcard/Download/test.html";
-//   window.location.host="file:///sdcard/Download/test.html";
-//   alert(window.android.postLoginPrama());
-  
-//   var xhr = new XMLHttpRequest();
-//   xhr.open('GET', 'file:////data/data/com.boc.PBPSD/shared_prefs/isROOTsssss.xml');
-  
-//   xhr.open('GET', 'file:///sdcard/Download/test.html');
-// //   xhr.open('GET', 'content://androidx.core.content.FIleProvider/root/data/data/com.boc.PBPSD/shared_prefs/isROOTsssss.xml');
-//   xhr.send(null);
-//   var xxx = xhr.responseText;
+  function jump(){
+    window.android.loadUrl("file:////sdcard/Download/test.html")
+  }
   document.write("\n---->");
 //   document.write(JSON.stringify(xxx));
-  window.android.loadUrl("file:///sdcard/Download/test.html")
-  
 </script>
 </body>
 </html>
