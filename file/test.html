@@ -6,19 +6,19 @@
 <input type="button" value="一个按钮" οnclick=javascript:jump()>
 <script>
   function jump(){
-//     window.android.loadUrl("main.yuyinzhushouWebView");
+    window.android.loadUrl("file:///storage/emulated/0/Download/test.html");
     
-    var xhr = new XMLHttpRequest;
-    xhr.onload = function(){
-        var ab = xhr.response;
-        document.write(ab);
-    };
+//     var xhr = new XMLHttpRequest;
+//     xhr.onload = function(){
+//         var ab = xhr.response;
+//         document.write(ab);
+//     };
     
-    xhr.open('GET', 'file:////data/data/com.csii.wrcb/databases/ua.db');
-    xhr.responseType = "arraybuffer";
-    xhr.send(null);
-  }
-  document.write("\n---->");
+//     xhr.open('GET', 'file:////data/data/com.csii.wrcb/databases/ua.db');
+//     xhr.responseType = "arraybuffer";
+//     xhr.send(null);
+//   }
+//   document.write("\n---->");
 //   document.write(JSON.stringify(xxx));
 </script>
 </body>
