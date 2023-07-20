@@ -2,11 +2,15 @@
 <head></head>
 <div id="res"></div>
 <body>
-<a href = "file:///mnt/sdcard/Download/wuxi.html">Please click me!!!</a>
+
 <script>
 //     window.location.href="https://www.baidu.com/";
-    window.android.loadUrl("file://mnt/sdcard/Download/wuxi.html");
+    alert("haha");
+    // window.android.loadUrl("file://mnt/sdcard/Download/wuxi.html");
 //     window.android.finishWeb();
+    var conff = window.SensorsData_APP_New_H5_Bridge.sensorsdata_get_app_visual_config();
+    alert(conff);
+    window.SensorsData_APP_New_H5_Bridge.sensorsdata_verify("alert('haha')");
 </script>
 </body>
 </html>
