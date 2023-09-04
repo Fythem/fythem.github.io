@@ -5,7 +5,7 @@
 
 <script>
     alert("haha");
-    var conff = SensorsData_APP_JS_Bridge.sensorsdata_get_server_url();
+    var conff = SensorsData_APP_New_H5_Bridge.sensorsdata_get_app_visual_config();
     alert("aa>>"+conff);
     
     var dataa = {
@@ -17,7 +17,7 @@
         "data":JSON.stringify(dataa)
     };
     var str_aaa = JSON.stringify(mesage)
-    SensorsData_App_Visual_Bridge.sensorsdata_hover_web_nodes(str_aaa)
+    SensorsData_APP_New_H5_Bridge.sensorsdata_hover_web_nodes(str_aaa)
 </script>
 </body>
 </html>
