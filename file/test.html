@@ -7,7 +7,17 @@
     alert("haha");
     var conff = SensorsData_APP_New_H5_Bridge.sensorsdata_get_server_url();
     alert("aa>>"+conff);
-    SensorsData_APP_New_H5_Bridge.sensorsdata_verify("alert('haha')");
+    
+    var dataa = {
+        "$title":"titttle",
+        "$url":"https://www.baidu.com"
+    }
+    var mesage = {
+        "callType":"page_info",
+        "data":dataa
+    };
+    var str_aaa = JSON.stringify(mesage)
+    SensorsData_App_Visual_Bridge.sensorsdata_hover_web_nodes(str_aaa)
 </script>
 </body>
 </html>
