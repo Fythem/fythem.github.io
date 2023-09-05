@@ -20,9 +20,9 @@ var jsBridge={
     	}
     },
     callback:function(res,position){
+        alert("@@@+"+JSON.stringify(res));
     	const method=this.queue.get(position);
     	if(method){
-            alert("@@@+"+JSON.stringify(res));
     		method.call(this,JSON.stringify(res))
     	}
     	this.queue.delete(position)
@@ -36,8 +36,9 @@ var jsBridge={
     alert("haha");
     // var conff = SensorsData_APP_New_H5_Bridge.sensorsdata_get_app_visual_config();
     // alert("aa>>"+conff);
-    var aaa = jsBridge.getUserSession(callback);
-    alert("isIOS = "+aaa);
+    // var aaa = jsBridge.getUserSession(callback);
+    jsBridge.invoke('getUserSession', {}, null)
+    // alert("isIOS = "+aaa);
 </script>
 </body>
 </html>
