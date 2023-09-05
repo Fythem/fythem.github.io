@@ -7,17 +7,10 @@
     alert("haha");
     var conff = SensorsData_APP_New_H5_Bridge.sensorsdata_get_app_visual_config();
     alert("aa>>"+conff);
-    
-    var dataa = {
-        "$title":"titttle",
-        "$url":"https://www.baidu.com"
-    }
-    var mesage = {
-        "callType":"page_info",
-        "data":JSON.stringify(dataa)
-    };
-    var str_aaa = JSON.stringify(mesage)
     SensorsData_APP_New_H5_Bridge.sensorsdata_hover_web_nodes(str_aaa)
+
+    var isIOS = window.jsBridge.isIOS()
+    alert("isIOS = "+isIOS)
 </script>
 </body>
 </html>
