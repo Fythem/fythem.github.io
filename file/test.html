@@ -4,6 +4,8 @@
 <body>
 
 <script>
+alert("url = "+window.SensorsData_iOS_JS_Bridge.sensorsdata_app_server_url());
+
 var wk_tasks = {};
 var wk_task_id = 0;
 function wk_sendSyncMessage(method, params) {
@@ -121,9 +123,6 @@ window.jsBridge.invoke = wk_app_invoke;
 window.jsBridge.isIOS = true;
 window.jsBridge.isAndroid = false;
 window.jsBridge.version = "1.0.0";
-
-
-alert("isIOS: "+window.jsBridge.isIOS)
 </script>
 </body>
 </html>
