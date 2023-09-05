@@ -4,41 +4,126 @@
 <body>
 
 <script>
-var jsBridge={
-    index:0,
-    queue:new Map(),
-    invoke:function(method,params,callback){
-    	if(params==null){
-    		params={\"params\":null}
-    	}
-    	if(callback!=null){
-    		this.index=this.index+1;
-    		this.queue.set(this.index,callback);
-    		Android_jsBridge.invoke(method,JSON.stringify(params),this.index)
-    	}else{
-    		Android_jsBridge.invoke(method,JSON.stringify(params),-1)
-    	}
-    },
-    callback:function(res,position){
-        alert("@@@+"+JSON.stringify(res));
-    	const method=this.queue.get(position);
-    	if(method){
-    		method.call(this,JSON.stringify(res))
-    	}
-    	this.queue.delete(position)
-    },
-    toLogin:function(callback){this.invoke(\"toLogin\",null,callback)},
-    getUserSession:function(callback){this.invoke(\"getUserSession\",null,callback)},
-    browser:function(params){this.invoke(\"browser\",params,null);1},
-    privacyState:function(params,callback){this.invoke(\"privacyState\",params,callback)}
+var wk_tasks = {};
+var wk_task_id = 0;
+function wk_sendSyncMessage(method, params) {
+        try {
+            var resultjson = prompt(JSON.stringify({ method: method,params: params || {} }));
+//            var resultObj = resultjson ? JSON.parse(resultjson) : {};
+            return resultjson;
+        }
+        catch (error) {
+            console.log('error native message');
+        }
+}
+
+function Task(id, onSuccess, onError) {
+    this.id = id;
+    this.onSuccess = onSuccess;
+    this.onError = onError;
+}
+
+function wk_sendAsyncMessage(method, params, onSuccess, onError) {
+    console.log('wk_sendAsyncMessage');
+    if (onSuccess || onError) {
+        var task = new Task(wk_task_id, onSuccess, onError);
+        wk_tasks[wk_task_id] = task;
+        wk_task_id++;
+        window.webkit.messageHandlers.bitmart.postMessage({
+                                                             id: task.id,
+                                                             method: method,
+                                                             params: params || {}
+                                                             });
+    } else {
+        window.webkit.messageHandlers.bitmart.postMessage({
+                                                           method: method,
+                                                           params: params || {}
+                                                           });
+    }
 };
-                         
-    alert("haha");
-    // var conff = SensorsData_APP_New_H5_Bridge.sensorsdata_get_app_visual_config();
-    // alert("aa>>"+conff);
-    // var aaa = jsBridge.getUserSession(callback);
-    jsBridge.invoke('getUserSession', {}, null)
-    // alert("isIOS = "+aaa);
+
+function wk_onSuccess(id, message) {
+    var task = wk_tasks[id];
+    task.onSuccess(message);
+    delete wk_tasks[id]
+}
+
+function wk_onError(id, message) {
+    var task = wk_tasks[id];
+    task.onError(message);
+    delete wk_tasks[id]
+}
+
+function wk_log(message) {
+    wk_sendAsyncMessage('log', { log: message })
+}
+
+var wk_actions = {};
+
+function wk_register(action, callback) {
+    wk_actions[action] = callback;
+}
+
+function wk_invoke(action, id, params) {
+    callback = wk_actions[action];
+    if (typeof callback === 'function') {
+        return callback(id, params);
+    } else {
+        wk_log("action" + action + "not found");
+    }
+}
+
+function wk_getUserSession(callback) {
+    return wk_sendAsyncMessage('getUserSession', {}, callback)
+}
+
+function wk_toLogin(callback) {
+    wk_sendAsyncMessage('toLogin', {}, callback)
+}
+
+function wk_privacyState(params, callback) {
+    wk_sendAsyncMessage('privacyState', params, callback)
+}
+
+function wk_browser(params) {
+    wk_sendAsyncMessage('browser', params, {})
+}
+
+function wk_navigateBack(callback) {
+    wk_sendAsyncMessage('navigateBack', {}, callback)
+}
+
+function wk_navigationBarStatus(params) {
+    wk_sendAsyncMessage('navigationBarStatus', params, {})
+}
+
+function wk_spotLeverTestSubmit(callback) {
+    wk_sendAsyncMessage('spotLeverTestSubmit', {}, callback)
+}
+
+function wk_app_invoke(method, params) {
+    wk_sendAsyncMessage(method, params || {}, {})
+}
+
+//兼容老版本
+window.jsBridge = {};
+window.jsBridge.sendAsyncMesage = wk_sendAsyncMessage;
+window.jsBridge.register = wk_register;
+
+window.jsBridge.log = wk_log;
+window.jsBridge.toLogin = wk_toLogin;
+window.jsBridge.getUserSession = wk_getUserSession;
+window.jsBridge.privacyState = wk_privacyState;
+window.jsBridge.browser = wk_browser;
+window.jsBridge.navigateBack = wk_navigateBack;
+window.jsBridge.spotLeverTestSubmit = wk_spotLeverTestSubmit;
+window.jsBridge.invoke = wk_app_invoke;
+window.jsBridge.isIOS = true;
+window.jsBridge.isAndroid = false;
+window.jsBridge.version = "1.0.0";
+
+
+alert("isIOS: "+window.jsBridge.isIOS)
 </script>
 </body>
 </html>
