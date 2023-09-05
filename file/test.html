@@ -22,6 +22,7 @@ var jsBridge={
     callback:function(res,position){
     	const method=this.queue.get(position);
     	if(method){
+            alert("@@@+"+JSON.stringify(res));
     		method.call(this,JSON.stringify(res))
     	}
     	this.queue.delete(position)
