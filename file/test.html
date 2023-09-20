@@ -112,9 +112,15 @@ function wk_app_invoke(method, params) {
 }
 
 ////
-var a = window.SensorsData_APP_JS_Bridge.sensorsdata_call_app()
-alert("sensorsdata_call_app = " + a)
+        var sensorsdata_call_app = window.SensorsData_APP_JS_Bridge.sensorsdata_call_app()
+        var sensorsdata_get_app_visual_config = window.SensorsData_APP_JS_Bridge.sensorsdata_get_app_visual_config()
+        var sensorsdata_get_server_url = window.SensorsData_APP_JS_Bridge.sensorsdata_get_server_url()
+        var str1 = "sensorsdata_call_app = " + sensorsdata_call_app + "\nsensorsdata_get_app_visual_config = " + sensorsdata_get_app_visual_config + "\nsensorsdata_get_server_url = " + sensorsdata_get_server_url
+        alert(str1)
+        
 
+
+        
 
         
 </script>
