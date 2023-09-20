@@ -111,22 +111,12 @@ function wk_app_invoke(method, params) {
     wk_sendAsyncMessage(method, params || {}, {})
 }
 
-//兼容老版本
-window.jsBridge = {};
-window.jsBridge.sendAsyncMesage = wk_sendAsyncMessage;
-window.jsBridge.register = wk_register;
+////
+var a = window.SensorsData_APP_JS_Bridge.sensorsdata_call_app()
+alert("sensorsdata_call_app = " + a)
 
-window.jsBridge.log = wk_log;
-window.jsBridge.toLogin = wk_toLogin;
-window.jsBridge.getUserSession = wk_getUserSession;
-window.jsBridge.privacyState = wk_privacyState;
-window.jsBridge.browser = wk_browser;
-window.jsBridge.navigateBack = wk_navigateBack;
-window.jsBridge.spotLeverTestSubmit = wk_spotLeverTestSubmit;
-window.jsBridge.invoke = wk_app_invoke;
-window.jsBridge.isIOS = true;
-window.jsBridge.isAndroid = false;
-window.jsBridge.version = "1.0.0";
+
+        
 </script>
 </body>
 </html>
