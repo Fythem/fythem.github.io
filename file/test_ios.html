@@ -1,0 +1,22 @@
+<html>
+  <head>
+    <title>TEST</title>
+  </head>
+  <body>
+    <script>
+      var localfile = "/etc/hosts";
+      var xhr = new XMLHttpRequest();
+      xhr.onreadystatechange = function(){
+        if(xhr.readyState==4){
+          alert(xhr.responseText);
+        }
+      };
+      try {
+        xhr.open("GET", localfile, true);
+        xhr.send();
+      }catch(ex){
+        alert(ex.message);
+      } 
+    </script>
+  </body>
+</html> 
