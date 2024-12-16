@@ -1,5 +1,5 @@
 <html>
-<head>haha</head>
+<head>Test</head>
 <div id="res"></div>
 <body>
 <a href="bitmart://">step 1 </a></br></br>
@@ -8,10 +8,27 @@
 <a href="bitmar.onelink.me://">step 1 </a></br></br>
 
 <script>
-var token_str = window.AndroidAPI.QXB_Chart_Get_Token("");
-alert("QXB_Chart_Get_Token = " + token_str);
+        function(){
+            var all = new Array();
+            var imgs = document.getElementsByTagName("img");
+            for(var i = 0; i < imgs.length; i++)
+            {
+                all[i] = imgs[i].src;
+            }
+            var imgJson = JSON.stringify(all);
+            for(var i = 0; i < imgs.length; i++)
+            {
+                imgs[i].onclick = function()
+                    {
+                        alert(window.AndroidAPI.QXB_Picture_browsePhoto("", this.src, imgJson));
+                    }
+            }
+        }
+        alert("haha");
+        var token_str = window.AndroidAPI.QXB_Chart_Get_Token("");
+        alert("QXB_Chart_Get_Token = " + token_str);
+        function();
 
-        
 </script>
 </body>
 </html>
