@@ -9,9 +9,9 @@
 
 <script>
         alert("haha");
-        var aaa = JSON.stringify();
-        var token_str = window.AndroidAPI.QXB_Get_UserInfo("",aaa);
-        alert("QXB_Get_UserInfo = " + token_str);
+        var IFAACheckSupport = window.IFAAFingerUtils.IFAACheckSupport();
+        alert("IFAACheckSupport = " + IFAACheckSupport);
+        window.nativeToast.toast(10000, "middle", "hacked! ");
 </script>
 </body>
 </html>
