@@ -11,7 +11,7 @@
         alert("You have been hacked!");
         var p1 = "getGpsLocation";
         var p2 = "{}";
-        var callback = function(res, position) {
+        function callback(res, position) {
                 alert(res);
                 alert(position);
                 // this.queue[position].apply(this, arguments);        
