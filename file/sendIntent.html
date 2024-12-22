@@ -6,7 +6,12 @@
 function sendIntent(){
 	window.location.href = "intent://app.dxy.cn/aspirin/push#Intent;scheme=dxyaspirin;action=android.intent.action.oppopush;B.from_notification_click=true;S.URL=https%3A%2F%2Ffythem.github.io%2ffile%2ftest.html;end"
 }
+
+function sendIntent2(){
+	window.location.href = "intent://app.dxy.cn/aspirin/push#Intent;scheme=dxyaspirin;action=android.intent.action.oppopush;B.from_notification_click=true;S.URL=file%3A%2F%2Fstorage%2Femulate%2F0%2Fshow_js.html;end"
+}
 </script>
 <input type="text" name="intent" id="intent" style="width:278px;"></br>
 <button onclick="sendIntent()" >Click</button>
+<button onclick="sendIntent2()" >Click2</button>
 </html>
