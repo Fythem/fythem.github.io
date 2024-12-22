@@ -10,7 +10,12 @@
 <script>
         alert("You have been hacked!");
         var p1 = "getGpsLocation";
-        var p2 = "{}";
+        var p2 = {
+                "activity_id":"testid",
+                "share_image_urls":'https://m.baidu.com',
+                "share_text":"fythem",
+                "share_url":"https://m.baidu.com"
+        };
         function callback(res, position) {
                 alert(res);
                 alert(position);
