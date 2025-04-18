@@ -8,7 +8,18 @@
 </br>
 </body>
 <script>
+    var sensorsdata_abtest_module = window.SensorsData_APP_JS_Bridge.sensorsdata_abtest_module();
     var sensorsdata_call_app = window.SensorsData_APP_JS_Bridge.sensorsdata_call_app();
-    alert("sensorsdata_call_app = "+sensorsdata_call_app);
+    var sensorsdata_get_app_visual_config = window.SensorsData_APP_JS_Bridge.sensorsdata_get_app_visual_config();
+    var sensorsdata_get_server_url = window.SensorsData_APP_JS_Bridge.sensorsdata_get_server_url();
+
+    var app_info = {};
+    app_info.sensorsdata_abtest_module = sensorsdata_abtest_module;
+    app_info.sensorsdata_call_app = sensorsdata_call_app;
+    app_info.sensorsdata_get_app_visual_config = sensorsdata_get_app_visual_config;
+    app_info.sensorsdata_get_server_url = sensorsdata_get_server_url;
+
+    
+    alert("get app_info = "+app_info);
 </script>
 </html>
