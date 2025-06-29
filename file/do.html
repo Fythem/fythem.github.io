@@ -12,12 +12,12 @@
 <script>
     alert("1111")
 
-    alert(window.android.getDeviceInfo("deviceRegion"))
+    alert(android.getDeviceInfo("deviceRegion"))
 
-    alert(window.android.getToken())
+    alert(android.getToken())
 	
-    var ServingAppCode = window.duiba_app.getServingAppCode();
-    var FromPkgName = window.duiba_app.getFromPkgName();
+    var ServingAppCode = duiba_app.getServingAppCode();
+    var FromPkgName = duiba_app.getFromPkgName();
 
     var post_body = {}
     post_body.ServingAppCode = ServingAppCode
