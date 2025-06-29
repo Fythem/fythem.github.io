@@ -9,18 +9,19 @@
 
 </body>
 <script>
+    alert("1111")
     var ServingAppCode = window.duiba_app.getServingAppCode();
-    var getFromPkgName = window.duiba_app.getFromPkgName();
+    var FromPkgName = window.duiba_app.getFromPkgName();
 
     var post_body = {}
     post_body.ServingAppCode = ServingAppCode
-    post_body.getFromPkgName = getFromPkgName
+    post_body.FromPkgName = FromPkgName
 	
     alert(JSON.stringify(post_body))
 	
     var LinkDataCredit = {}
     LinkDataCredit.linkType = "WEBVIEW"
-    LinkDataCredit.linkUrl = "http://192.168.31.84:8099/shwo_js.html"
+    LinkDataCredit.linkUrl = "https://www.baidu.com"
     LinkDataCredit.appName = ""
     window.duiba_app.launchActivity(JSON.stringify(LinkDataCredit))
     
