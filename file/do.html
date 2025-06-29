@@ -13,6 +13,12 @@
     alert("2222")
 
     // alert(android.getDeviceInfo("deviceRegion"))
+var LinkDataCredit = {}
+LinkDataCredit.linkType = "WEBVIEW"
+LinkDataCredit.linkUrl = "https://m.baidu.com"
+LinkDataCredit.appName = ""
+duiba_app.launchActivity(JSON.stringify(LinkDataCredit));
+	
     android.jump2Kefu("https://www.baidu.com")
 
     alert(android.getToken())
