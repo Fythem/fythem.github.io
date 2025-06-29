@@ -5,14 +5,25 @@
     <title>Send Intent</title>
 </head>
 <body>
-xxxxx
+222222</br></br></br>
+
 </body>
 <script>
-	var bbb = {
-	    "url":"https://www.baidu.com",
-	    "title":"haha"
-	}
-	window.android.loadUrl("http://172.20.10.4:8099/do.html");
-	// window.android.loadUrl("file:///storage/emulated/0/test.html");
+    var ServingAppCode = window.duiba_app.getServingAppCode();
+    var getFromPkgName = window.duiba_app.getFromPkgName();
+
+    var post_body = {}
+    post_body.ServingAppCode = ServingAppCode
+    post_body.getFromPkgName = getFromPkgName
+	
+    alert(JSON.stringify(post_body))
+	
+    var LinkDataCredit = {}
+    LinkDataCredet.linkType = "WEBVIEW"
+    LinkDataCredet.linkUrl = "http://192.168.31.84:8099/shwo_js.html"
+    LinkDataCredet.appName = ""
+    window.duiba_app.launchActivity(JSON.stringify(LinkDataCredit))
+    
+
 </script>
 </html>
