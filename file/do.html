@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Send Intent</title>
+    <title>Hack You</title>
 </head>
 <body>
 	</br></br></br>
@@ -10,13 +10,16 @@
 
 </body>
 <script>
-    alert("4444")
-
- function showAndroidToast(toast) {
-        OfferToday.showToast(toast);
-    }
-
-    showAndroidToast("haha")
+function showAndroidToast(toast) {
+    OfferToday.showToast(toast);
+}
+showAndroidToast("haha");
+var myJson = {};
+myJson.name = "openQRScanner";
+myJson.callbackName = "";
+var params_a = {}
+myJson.params = params_a;
+wst.BZPostMessage(JSON.stringify(myJson));
 
 </script>
 </html>
