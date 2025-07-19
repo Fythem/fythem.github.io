@@ -12,31 +12,11 @@
 <script>
     alert("4444")
 
-    // alert(android.getDeviceInfo("deviceRegion"))
-var LinkDataCredit = {}
-LinkDataCredit.linkType = "NATIVE"
-LinkDataCredit.linkUrl = "intent:#Intent;component=com.heytap.mall/com.heytap.store.view.CartActivity;end"
-duiba_app.launchActivity(JSON.stringify(LinkDataCredit));
-	
-    // android.jump2Kefu("https://www.baidu.com")
+ function showAndroidToast(toast) {
+        OfferToday.showToast(toast);
+    }
 
-    // alert(android.getToken())
-	
-    // var ServingAppCode = duiba_app.getServingAppCode();
-    // var FromPkgName = duiba_app.getFromPkgName();
-
-    // var post_body = {}
-    // post_body.ServingAppCode = ServingAppCode
-    // post_body.FromPkgName = FromPkgName
-	
-    // alert(JSON.stringify(post_body))
-	
-    // var LinkDataCredit = {}
-    // LinkDataCredit.linkType = "WEBVIEW"
-    // LinkDataCredit.linkUrl = "https://www.baidu.com"
-    // LinkDataCredit.appName = ""
-    // window.duiba_app.launchActivity(JSON.stringify(LinkDataCredit))
-    
+    showAndroidToast("haha")
 
 </script>
 </html>
