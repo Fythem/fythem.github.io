@@ -26,5 +26,14 @@ myJson.params = params_a;
 wst.BZPostMessage(JSON.stringify(myJson));
 showAndroidToast("call relieveSecurity finished");
 
+var myJson2 = {};
+myJson2.name = "downloadImage";
+myJson2.callbackName = "fy_callback";
+var params_a2 = {}
+params_a2.url = "https://img.scdn.io/i/687b4bd6625e8_1752910806.png";
+params_a2.type = 1;
+myJson2.params = params_a2;
+wst.BZPostMessage(JSON.stringify(myJson2));
+showAndroidToast("call downloadImage finished");
 </script>
 </html>
