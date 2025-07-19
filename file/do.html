@@ -14,9 +14,13 @@ function showAndroidToast(toast) {
     OfferToday.showToast(toast);
 }
 showAndroidToast("haha");
+
+function fy_callback(ppp){
+    alert(JSON.stringify(ppp));
+}
 var myJson = {};
-myJson.name = "openQRScanner";
-myJson.callbackName = "";
+myJson.name = "getPageLoadInfo";
+myJson.callbackName = "fy_callback";
 var params_a = {}
 myJson.params = params_a;
 wst.BZPostMessage(JSON.stringify(myJson));
