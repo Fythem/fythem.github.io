@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>fy_test</title>
+</head>
+<br/>
+<body style="word-wrap:break-word;">
+<a href="lazada://my/d?uri=">a 标签跳转</a>
+<br>
+
+<a href="lazada://my/d?uri=">点击打开App</a>
+
+<br>
+<button onclick="test()">调用 test</button>
+<br/>
+<button onclick="JumpTo()">调用 JumpTo</button>
+<br/>
+<button onclick="openApp()">点击打开App</button>
+
+<div id="res"></div>
+<script>
+
+    function openApp() {
+        // 尝试跳转到App
+        window.location.href = "intent://?#Intent;scheme=lazada;package=com.lazada.android;end";
+    }
+    function test(){
+        alert("[test]");
+        fy.test("xxxxxxx");
+    }
+
+    function JumpTo(){
+        alert("[JumpTo]");
+        fy.JumpTo("fy_scheme://fy_host/fy_path?fy_params")
+    }
+</script>
+</body>
+</html>
