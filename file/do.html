@@ -11,7 +11,11 @@
 </body>
 <script>
 
-alert(window.AndroidNative.getDeviceInfo());
+	alert(window.AndroidNative.getDeviceInfo());
+	var param_to_sign = {}
+	param_to_sign.httpBody = "Test of test"
+	param_to_sign.curTime = "12345678"
+	alert(window.AndroidNative.starrybluToSign(JSON.stringify(param_to_sign)));
 	
 </script>
 </html>
