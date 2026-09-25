@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FaqWebActivity / WebActivity — AndroidNative JS Bridge 接口测试</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, "PingFang SC", "Microsoft YaHei", monospace; background: #0f172a; color: #e2e8f0; padding: 16px; }
+  h1 { font-size: 18px; margin-bottom: 4px; }
+  .sub { color: #94a3b8; font-size: 12px; margin-bottom: 12px; word-break: break-all; }
+  #bridgeStatus { padding: 10px 12px; border-radius: 8px; margin-bottom: 12px; font-weight: bold; }
+  .ok { background: #052e16; color: #4ade80; border: 1px solid #16a34a; }
+  .bad { background: #450a0a; color: #f87171; border: 1px solid #dc2626; }
+  .group { margin-bottom: 16px; }
+  .group h2 { font-size: 14px; color: #38bdf8; border-left: 3px solid #38bdf8; padding-left: 8px; margin-bottom: 8px; }
+  .row { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin-bottom: 6px; }
+  .row .name { width: 230px; font-size: 12px; color: #cbd5e1; word-break: break-all; }
+  .row input { flex: 1; min-width: 160px; background: #1e293b; border: 1px solid #334155; color: #e2e8f0; border-radius: 6px; padding: 6px 8px; font-size: 12px; font-family: monospace; }
+  .row button { background: #1d4ed8; border: none; color: #fff; padding: 6px 14px; border-radius: 6px; font-size: 12px; cursor: pointer; }
+  .row button:active { background: #1e40af; }
+  .row button.ret { background: #0e7490; }
+  .note { font-size: 11px; color: #64748b; margin-left: 6px; }
+  #log { background: #020617; border: 1px solid #1e293b; border-radius: 8px; padding: 10px 12px; height: 260px; overflow-y: auto; font-family: monospace; font-size: 12px; line-height: 1.6; }
+  #log .ln { color: #94a3b8; }
+  #log .res { color: #fbbf24; }
+  #log .err { color: #f87171; }
+  #log .call { color: #38bdf8; }
+  .toolbar { margin: 10px 0; display: flex; gap: 8px; align-items: center; }
+  .toolbar button { background: #334155; border: none; color: #e2e8f0; padding: 6px 12px; border-radius: 6px; font-size: 12px; cursor: pointer; }
+</style>
+</head>
+<body>
+  <h1>AndroidNative JS Bridge 接口测试</h1>
+  <div class="sub">目标：FaqWebActivity / WebActivity 注入的桥对象 <code>window.AndroidNative</code>（类 vf.p / NativeInterface）</div>
+
+  <div id="bridgeStatus" class="bad">正在检测 window.AndroidNative ...</div>
+
+  <div class="toolbar">
+    <button onclick="alertMode=!alertMode;this.textContent='Alert 回显: '+(alertMode?'开':'关')">Alert 回显: 关</button>
+    <button onclick="clearLog()">清空日志</button>
+    <button onclick="testAllReadable()">一键测试【可读返回值】方法</button>
+  </div>
+
+  <!-- 分组由 JS 渲染 -->
+  <div id="groups"></div>
+
+  <div class="sub">输出日志：</div>
+  <div id="log"></div>
+
+<script>
+// ============ AndroidNative (vf.p) 接口清单 ============
+// hasReturn: 有同步返回值（String）; 否则为 void（触发原生行为，返回值 undefined）
+var alertMode = false;
+
+var methods = [
+  // —— 可读返回值 ——
+  { group: "可读返回值（String）", name: "getPhoneIMEI()", args: [], hasReturn: true, note: "返回设备 IMEI" },
+  { group: "可读返回值（String）", name: "giveInformation(str)", args: ["js"], hasReturn: true, note: "读 SharedPreferences[key]（key 写死为 js）" },
+
+  // —— 认证 / 登录 / 生物识别 ——
+  { group: "认证 / 登录 / 生物识别", name: "authToken()", args: [], note: "void，触发登录流程（拿不到 token）" },
+  { group: "认证 / 登录 / 生物识别", name: "callSingpass()", args: [], note: "触发 SingPass 认证" },
+  { group: "认证 / 登录 / 生物识别", name: "evokeBiometric()", args: [], note: "触发人脸/指纹生物识别支付" },
+  { group: "认证 / 登录 / 生物识别", name: "increaseLimit()", args: [], note: "提高交易限额" },
+  { group: "认证 / 登录 / 生物识别", name: "logout(str)", args: [""], note: "登出" },
+  { group: "认证 / 登录 / 生物识别", name: "pandaremitLogin(str)", args: ["{}"], note: "登录" },
+
+  // —— 页面跳转 / 打开 URL ——
+  { group: "页面跳转 / 打开 URL", name: "pandaremitOpenURL(str)", args: ["https://www.baidu.com"], note: "打开任意 URL" },
+  { group: "页面跳转 / 打开 URL", name: "pandaremitGoToPage(str)", args: ["/main/MainActivity"], note: "ARouter 页面跳转" },
+  { group: "页面跳转 / 打开 URL", name: "openTopUpPage(str)", args: ['{"currency":"CNY"}'], note: "充值页" },
+  { group: "页面跳转 / 打开 URL", name: "navigationOrderDetail(str)", args: ['{"seqNo":"1"}'], note: "订单详情" },
+  { group: "页面跳转 / 打开 URL", name: "moveToPartnerMain()", args: [], note: "跳合作方首页" },
+  { group: "页面跳转 / 打开 URL", name: "pandaremitChangeBinding()", args: [], note: "换绑手机" },
+  { group: "页面跳转 / 打开 URL", name: "gotoEditPayerByStatus()", args: [], note: "编辑付款人" },
+  { group: "页面跳转 / 打开 URL", name: "openAppSettings()", args: [], note: "打开系统设置" },
+
+  // —— 支付 / 订单回调 ——
+  { group: "支付 / 订单回调", name: "pandaRemitWeChatRemit(str)", args: ["{}"], note: "微信汇款下单" },
+  { group: "支付 / 订单回调", name: "transactionSuccess(str)", args: ["{}"], note: "交易成功回调" },
+  { group: "支付 / 订单回调", name: "receivingPayment()", args: [], note: "收款" },
+  { group: "支付 / 订单回调", name: "payCancelledCallback()", args: [], note: "支付取消回调" },
+  { group: "支付 / 订单回调", name: "pepSuccess()", args: [], note: "PEP 成功" },
+  { group: "支付 / 订单回调", name: "sofSuccess()", args: [], note: "SOF 成功" },
+  { group: "支付 / 订单回调", name: "pandaremitRefund()", args: [], note: "退款" },
+
+  // —— 分享 / 图片 / 数据 ——
+  { group: "分享 / 图片 / 数据", name: "pandaremitShare(str)", args: ["{}"], note: "分享" },
+  { group: "分享 / 图片 / 数据", name: "pandaremitShareImg(str)", args: ["{}"], note: "分享图片" },
+  { group: "分享 / 图片 / 数据", name: "pandaremitSaveImg(str)", args: ['{"data":""}'], note: "base64 图片写文件" },
+  { group: "分享 / 图片 / 数据", name: "writeData(str)", args: ["test"], note: "写 SharedPreferences[js]" },
+
+  // —— 返回 / 关闭 / 权限 ——
+  { group: "返回 / 关闭 / 权限", name: "back()", args: [], note: "返回" },
+  { group: "返回 / 关闭 / 权限", name: "closeWebview()", args: [], note: "关闭 WebView（会结束本页）" },
+  { group: "返回 / 关闭 / 权限", name: "pandaremitBack(str)", args: ['{"needBack":false}'], note: "返回控制" },
+  { group: "返回 / 关闭 / 权限", name: "firmInvitationJump()", args: [], note: "关闭并返回结果" },
+  { group: "返回 / 关闭 / 权限", name: "requestCameraPermission()", args: [], note: "申请相机权限" },
+  { group: "返回 / 关闭 / 权限", name: "requestNotificationPermission()", args: [], note: "申请通知权限" },
+  { group: "返回 / 关闭 / 权限", name: "checkUpdateApp()", args: [], note: "检查更新" }
+];
+
+function log(type, text) {
+  var el = document.getElementById("log");
+  var line = document.createElement("div");
+  line.className = type;
+  line.textContent = "[" + new Date().toLocaleTimeString() + "] " + text;
+  el.appendChild(line);
+  el.scrollTop = el.scrollHeight;
+}
+
+function clearLog() {
+  document.getElementById("log").innerHTML = "";
+}
+
+function detect() {
+  var st = document.getElementById("bridgeStatus");
+  if (typeof window.AndroidNative !== "undefined" && window.AndroidNative) {
+    st.className = "ok";
+    st.textContent = "✓ 检测到 window.AndroidNative（桥已注入，可调用）";
+    log("ln", "检测到 AndroidNative 桥对象");
+  } else {
+    st.className = "bad";
+    st.textContent = "✗ 未检测到 window.AndroidNative —— 请确保本页面运行在 FaqWebActivity/WebActivity 的 WebView 中";
+    log("err", "未检测到 AndroidNative 桥对象");
+  }
+}
+
+function buildUI() {
+  var groups = {};
+  methods.forEach(function (m) {
+    (groups[m.group] = groups[m.group] || []).push(m);
+  });
+  var root = document.getElementById("groups");
+  Object.keys(groups).forEach(function (gname) {
+    var sec = document.createElement("div");
+    sec.className = "group";
+    var h = document.createElement("h2");
+    h.textContent = gname;
+    sec.appendChild(h);
+    groups[gname].forEach(function (m, idx) {
+      var row = document.createElement("div");
+      row.className = "row";
+      var nm = document.createElement("span");
+      nm.className = "name";
+      nm.textContent = m.name;
+      row.appendChild(nm);
+
+      var inputs = m.args.map(function (dflt) {
+        var inp = document.createElement("input");
+        inp.value = dflt;
+        return inp;
+      });
+      inputs.forEach(function (i) { row.appendChild(i); });
+
+      var btn = document.createElement("button");
+      btn.textContent = "调用";
+      if (m.hasReturn) btn.className = "ret";
+      btn.onclick = function () {
+        invoke(m, inputs.map(function (i) { return i.value; }));
+      };
+      row.appendChild(btn);
+
+      if (m.note) {
+        var nt = document.createElement("span");
+        nt.className = "note";
+        nt.textContent = m.note;
+        row.appendChild(nt);
+      }
+      sec.appendChild(row);
+    });
+    root.appendChild(sec);
+  });
+}
+
+function invoke(m, argVals) {
+  var fn = window.AndroidNative[m.name.split("(")[0]];
+  if (typeof fn !== "function") {
+    log("err", m.name + " → 方法不存在");
+    return;
+  }
+  try {
+    var r = fn.apply(window.AndroidNative, argVals);
+    var msg = m.name + "(" + argVals.map(JSON.stringify).join(", ") + ") → " + (r === undefined ? "undefined (void)" : JSON.stringify(r));
+    log(m.hasReturn ? "res" : "call", msg);
+    if (alertMode || m.hasReturn) {
+      alert(msg);
+    }
+  } catch (e) {
+    log("err", m.name + " → 异常: " + e.message);
+  }
+}
+
+function testAllReadable() {
+  methods.filter(function (m) { return m.hasReturn; }).forEach(function (m) {
+    invoke(m, m.args);
+  });
+}
+
+detect();
+buildUI();
+</script>
+</body>
+</html>
